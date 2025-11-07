@@ -1,3 +1,5 @@
+using Lab_1_Code.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +12,17 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Urls.Add($"http://*:{port}");
+/*
+try //Migrator
+{
+    using var scope = ((IApplicationBuilder)app).ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+    scope.ServiceProvider.GetRequiredService<PersonDbContext>().Database.Migrate();
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+    throw;
+}*/
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
