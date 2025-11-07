@@ -22,4 +22,7 @@ RUN dotnet publish "./Lab_1_Code.csproj" -c $BUILD_CONFIGURATION -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+ENV ASPNETCORE_URLS=http://+:$PORT
+
 ENTRYPOINT ["dotnet", "Lab_1_Code.dll"]
