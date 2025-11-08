@@ -1,4 +1,6 @@
 using Lab_1_Code.DAL;
+using Lab_1_Code.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +11,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<PersonDbContext>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+
 var app = builder.Build();
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Urls.Add($"http://*:{port}");
-/*
+
+
 try //Migrator
 {
     using var scope = ((IApplicationBuilder)app).ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
@@ -22,7 +28,7 @@ catch (Exception e)
 {
     Console.WriteLine(e);
     throw;
-}*/
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
