@@ -10,7 +10,7 @@ namespace Lab_1_Code.Controllers
     [Route("api/personController")]
     public class PersonController : ControllerBase
     {
-        IPersonService _personService;
+        private readonly IPersonService _personService;
         public PersonController(IPersonService personService) 
         {
             _personService = personService;

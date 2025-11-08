@@ -1,3 +1,4 @@
+using Lab_1_Code.BLL;
 using Lab_1_Code.DAL;
 using Lab_1_Code.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PersonDbContext>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IPersonService, PersonService>();
 
 var app = builder.Build();
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
