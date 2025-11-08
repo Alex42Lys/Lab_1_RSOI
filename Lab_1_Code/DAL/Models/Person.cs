@@ -5,7 +5,7 @@ namespace Lab_1_Code.DAL.Models
     public class Person
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [MaxLength(512)]
         public string Name { get; set; }
         [MaxLength(512)]

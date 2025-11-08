@@ -18,7 +18,7 @@ namespace Lab_1_Code.Controllers
         [HttpGet]
         [Route("/persons/{personId}")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
-        public async Task<IResult> GetPersonById(int personId)
+        public async Task<IResult> GetPersonById(Guid personId)
         {
             var res = await _personService.GetById(personId);
             if(res == null)

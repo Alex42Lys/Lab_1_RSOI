@@ -6,10 +6,10 @@ namespace Lab_1_Code.BLL
     public interface IPersonService
     {
         public Task<List<PersonResposeDTO>> GetAll();
-        public Task<PersonResposeDTO?> GetById(int id);
-        public Task<int> Add(PersonRequestDTO personRequest);
-        public Task<int?> Update(int id, PersonUpdateRequestDTO personRequest);
-        public Task<int?> Delete(int id);
+        public Task<PersonResposeDTO?> GetById(Guid id);
+        public Task<Guid> Add(PersonRequestDTO personRequest);
+        public Task<Guid?> Update(Guid id, PersonUpdateRequestDTO personRequest);
+        public Task<Guid?> Delete(Guid id);
 
     }
 }
