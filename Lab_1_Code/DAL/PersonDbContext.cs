@@ -6,6 +6,7 @@ namespace Lab_1_Code.DAL
 {
     public class PersonDbContext(DbContextOptions<PersonDbContext> options) : DbContext(options)
     {
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Person> PersonBase { get; set; }
+
     }
 }

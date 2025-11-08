@@ -18,7 +18,7 @@ namespace Lab_1_Code.Controllers
         [HttpGet]
         [Route("/persons/{personId}")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
-        public async Task<IResult> GetPersonById(Guid personId)
+        public async Task<IResult> GetPersonById(int personId)
         {
             var res = await _personService.GetById(personId);
             if(res == null)
@@ -27,6 +27,7 @@ namespace Lab_1_Code.Controllers
             }
             return Results.Ok(res);
         }
+
         [HttpPost]
         [Route("/persons")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
@@ -35,5 +36,32 @@ namespace Lab_1_Code.Controllers
             var res = await _personService.Add(personRequestDTO);
             return Results.Created($"/persons/{res}", res);
         }
+
+        [HttpGet]
+        [Route("/persons")]
+        [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
+        public async Task<IResult> GetAllPersons()
+        {
+            var res = await _personService.GetAll();
+            if (res == null)
+            {
+                return Results.NotFound();
+            }
+            return Results.Ok(res);
+        }
+
+
+        //[HttpPatch]
+        //[Route("/persons/{personId}")]
+        //[ProducesResponseType<IResult>(StatusCodes.Status200OK)]
+        //public async Task<IResult> GetAllPersons(int personId, )
+        //{
+        //    var res = await _personService.GetAll();
+        //    if (res == null)
+        //    {
+        //        return Results.NotFound();
+        //    }
+        //    return Results.Ok(res);
+        //}
     }
 }

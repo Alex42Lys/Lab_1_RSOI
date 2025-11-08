@@ -2,7 +2,7 @@
 {
     public record class PersonResposeDTO
     {
-        public PersonResposeDTO(Guid id, string name, int age, string surname, string occupation) 
+        public PersonResposeDTO(int id, string name, int age, string surname, string occupation) 
         {
             Id = id;
             Name = name;
@@ -11,7 +11,7 @@
             Occupation = occupation;
 
         }
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public int? Age { get; set; }
         public string? Surname { get; set; }

@@ -14,7 +14,7 @@ namespace Lab_1_Code.BLL
                 .ToList();
         }
 
-        public async Task<PersonResposeDTO?> GetById(Guid id)
+        public async Task<PersonResposeDTO?> GetById(int id)
         {
             var entity = await _personRepository.GetPersonById(id);
             return entity == null ?
@@ -22,7 +22,7 @@ namespace Lab_1_Code.BLL
                 new PersonResposeDTO(entity.Id, entity.Name, entity.Age ?? 0, entity.Surname ?? "", entity.Occupation ?? "");
         }
 
-        public async Task<Guid> Add(PersonRequestDTO personRequest)
+        public async Task<int> Add(PersonRequestDTO personRequest)
         {
             return await _personRepository.AddPerson(new Person()
             {
@@ -33,7 +33,7 @@ namespace Lab_1_Code.BLL
             });
         }
 
-        public async Task<Guid?> Update(Guid id, PersonUpdateRequestDTO personRequest)
+        public async Task<int?> Update(int id, PersonUpdateRequestDTO personRequest)
         {
             var entity = await _personRepository.GetPersonById(id);
             if (entity == null) return null;
@@ -46,7 +46,7 @@ namespace Lab_1_Code.BLL
             return entity.Id;
         }
 
-        public async Task<Guid?> Delete(Guid id)
+        public async Task<int?> Delete(int id)
         {
             var entity = await _personRepository.GetPersonById(id);
             if (entity == null) return null;

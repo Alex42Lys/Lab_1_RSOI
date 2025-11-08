@@ -27,7 +27,7 @@ namespace Lab_1_Code.Migrations
 
             modelBuilder.Entity("Lab_1_Code.DAL.Models.Person", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
