@@ -21,7 +21,7 @@ namespace Lab_1_Code.Controllers
         public async Task<IResult> GetPersonById(int personId)
         {
             var res = await _personService.GetById(personId);
-            if(res == null)
+            if(res == null || res.Name == null)
             {
                 return Results.NotFound();
             }
@@ -43,7 +43,7 @@ namespace Lab_1_Code.Controllers
         public async Task<IResult> GetAllPersons()
         {
             var res = await _personService.GetAll();
-            if (res == null)
+            if (res == null || res.Count == 0)
             {
                 return Results.NotFound();
             }
