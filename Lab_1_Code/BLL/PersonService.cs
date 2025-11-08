@@ -26,6 +26,7 @@ namespace Lab_1_Code.BLL
         {
             return await _personRepository.AddPerson(new Person()
             {
+                Id = personRequest.Id,
                 Name = personRequest.Name,
                 Age = personRequest.Age,
                 Surname = personRequest.Surname,

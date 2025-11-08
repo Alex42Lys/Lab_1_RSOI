@@ -51,17 +51,32 @@ namespace Lab_1_Code.Controllers
         }
 
 
-        //[HttpPatch]
-        //[Route("/persons/{personId}")]
-        //[ProducesResponseType<IResult>(StatusCodes.Status200OK)]
-        //public async Task<IResult> GetAllPersons(int personId, )
-        //{
-        //    var res = await _personService.GetAll();
-        //    if (res == null)
-        //    {
-        //        return Results.NotFound();
-        //    }
-        //    return Results.Ok(res);
-        //}
+        [HttpPatch]
+        [Route("/persons/{personId}")]
+        [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
+        public async Task<IResult> GetAllPersons(int personId, PersonUpdateRequestDTO personUpdateRequestDTO )
+        {
+            var res = await _personService.Update(personId, personUpdateRequestDTO);
+            if (res == null)
+            {
+                return Results.Problem();
+            }
+            return Results.Ok(res);
+        }
+
+        [HttpDelete]
+        [Route("/persons/{personId}")]
+        [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
+        public async Task<IResult> DeletePersob(int personId)
+        {
+            var ans = await _personService.Delete(personId);
+            var res = await _personService.GetById(personId);
+
+            if (res == null)
+            {
+                return Results.NoContent();
+            }
+            return Results.NotFound();
+        }
     }
 }
