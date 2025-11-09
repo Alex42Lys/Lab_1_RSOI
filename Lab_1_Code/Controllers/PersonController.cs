@@ -16,7 +16,7 @@ namespace Lab_1_Code.Controllers
             _personService = personService;
         }
         [HttpGet]
-        [Route("/persons/{personId}")]
+        [Route("api/v1/persons/{personId}")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
         public async Task<IResult> GetPersonById([FromRoute] int personId)
         {
@@ -29,7 +29,7 @@ namespace Lab_1_Code.Controllers
         }
 
         [HttpPost]
-        [Route("/persons")]
+        [Route("api/v1/persons")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
         public async Task<IResult> AddPerson(PersonRequestDTO personRequestDTO)
         {
@@ -38,7 +38,7 @@ namespace Lab_1_Code.Controllers
         }
 
         [HttpGet]
-        [Route("/persons")]
+        [Route("api/v1/persons")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
         public async Task<IResult> GetAllPersons()
         {
@@ -52,7 +52,7 @@ namespace Lab_1_Code.Controllers
 
 
         [HttpPatch]
-        [Route("/persons/{personId}")]
+        [Route("api/v1/persons/{personId}")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
         public async Task<IResult> GetAllPersons(int personId, PersonUpdateRequestDTO personUpdateRequestDTO )
         {
@@ -65,7 +65,7 @@ namespace Lab_1_Code.Controllers
         }
 
         [HttpDelete]
-        [Route("/persons/{personId}")]
+        [Route("api/v1/persons/{personId}")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
         public async Task<IResult> DeletePersob(int personId)
         {
