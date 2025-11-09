@@ -42,6 +42,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 app.UseRouting();
+app.MapGroup("api/v1");
 app.MapControllers();
 
 app.Run();
