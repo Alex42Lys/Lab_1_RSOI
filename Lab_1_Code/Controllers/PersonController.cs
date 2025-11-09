@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lab_1_Code.Controllers
 {
     [ApiController]
-    [Route("api/personController")]
+    [Route("api/v1")]
     public class PersonController : ControllerBase
     {
         private readonly IPersonService _personService;
@@ -16,12 +16,12 @@ namespace Lab_1_Code.Controllers
             _personService = personService;
         }
         [HttpGet]
-        [Route("api/v1/persons/{personId}")]
+        [Route("/persons/{personId}")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
-        public async Task<IResult> GetPersonById([FromRoute] int personId)
+        public async Task<IResult> GetPersonById(int personId)
         {
             var res = await _personService.GetById(personId);
-            if (res == null || res.Name == null)
+            if(res == null || res.Name == null)
             {
                 return Results.NotFound();
             }
@@ -29,7 +29,7 @@ namespace Lab_1_Code.Controllers
         }
 
         [HttpPost]
-        [Route("api/v1/persons")]
+        [Route("/persons")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
         public async Task<IResult> AddPerson(PersonRequestDTO personRequestDTO)
         {
@@ -38,7 +38,7 @@ namespace Lab_1_Code.Controllers
         }
 
         [HttpGet]
-        [Route("api/v1/persons")]
+        [Route("/persons")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
         public async Task<IResult> GetAllPersons()
         {
@@ -52,7 +52,7 @@ namespace Lab_1_Code.Controllers
 
 
         [HttpPatch]
-        [Route("api/v1/persons/{personId}")]
+        [Route("/persons/{personId}")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
         public async Task<IResult> GetAllPersons(int personId, PersonUpdateRequestDTO personUpdateRequestDTO )
         {
@@ -65,7 +65,7 @@ namespace Lab_1_Code.Controllers
         }
 
         [HttpDelete]
-        [Route("api/v1/persons/{personId}")]
+        [Route("/persons/{personId}")]
         [ProducesResponseType<IResult>(StatusCodes.Status200OK)]
         public async Task<IResult> DeletePersob(int personId)
         {
