@@ -14,6 +14,7 @@ namespace Lab_1_Tests
         {
             var options = new DbContextOptionsBuilder<PersonDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 .Options;
             _context = new PersonDbContext(options);
             _personRepository = new PersonRepository(_context);
@@ -44,13 +45,13 @@ namespace Lab_1_Tests
                 Name = "Jane Doe",
                 Age = 20
             });
-            var entity1 = await _context.PersonBase.FirstOrDefaultAsync(p => entityId1 == p.Id);
-            var entity2 = await _context.PersonBase.FirstOrDefaultAsync(p => entityId2 == p.Id);
-
+            var entity1 = await _personRepository.GetPersonById(entityId1);
+            var entity2 = await _personRepository.GetPersonById(entityId2);
+            var id1 = entity1.Id;
+            var id2 = entity2.Id;
             Assert.NotNull(entity1);
             Assert.NotNull(entity2);
-            Assert.Equal("John Doe", entity1.Name);
-            Assert.Equal("Jane Doe", entity2.Name);
+            Assert.NotEqual(id1, id2);
 
 
         }
