@@ -21,10 +21,10 @@ jobs:
             ls -la
             find . -name "*.csproj" -type f
       - name: Restore
-        run: dotnet restore src/Lab_1_Code/Lab_1_Code.csproj
+        run: dotnet restore ./Lab_1_Code/Lab_1_Code.csproj
 
       - name: Build
-        run: dotnet build src/Lab_1_Code.csproj --configuration Release --no-restore
+        run: dotnet build ./Lab_1_Code/Lab_1_Code.csproj --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test Lab_1_Tests/Lab_1_Tests.csproj --logger "console;verbosity=normal"
+        run: dotnet test ./Lab_1_Tests/Lab_1_Tests.csproj --logger "console;verbosity=normal"
