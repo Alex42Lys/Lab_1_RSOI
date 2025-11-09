@@ -33,7 +33,7 @@ namespace Lab_1_Code.BLL
             });
         }
 
-        public async Task<int?> Update(int id, PersonUpdateRequestDTO personRequest)
+        public async Task<Person> Update(int id, PersonUpdateRequestDTO personRequest)
         {
             var entity = await _personRepository.GetPersonById(id);
             if (entity == null) return null;
@@ -43,7 +43,7 @@ namespace Lab_1_Code.BLL
             entity.Work = personRequest.Work ?? entity.Work;
 
             await _personRepository.UpdatePerson(entity);
-            return entity.Id;
+            return entity;
         }
 
         public async Task<int?> Delete(int id)

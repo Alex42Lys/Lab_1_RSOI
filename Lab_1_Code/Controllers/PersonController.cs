@@ -62,7 +62,7 @@ namespace Lab_1_Code.Controllers
                 return Results.Problem();
             }
 
-            return Results.Ok(new PersonResposeDTO(personId, "", 0, "", ""));
+            return Results.Ok(new PersonResposeDTO(res.Id, res.Name, res.Age ?? 0, res.Address, res.Work));
         }
 
         [HttpDelete]
