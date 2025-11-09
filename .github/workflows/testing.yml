@@ -17,10 +17,10 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore
-        run: dotnet restore src/Lab_1_RSOI/Lab_1_RSOI.csproj
+        run: dotnet restore src/Lab_1_Code/Lab_1_Code.csproj
 
       - name: Build
-        run: dotnet build src/Lab_1_RSOI/Lab_1_RSOI.csproj --configuration Release --no-restore
+        run: dotnet build src/Lab_1_Code/Lab_1_Code.csproj --configuration Release --no-restore
 
       - name: Test
         run: dotnet test Lab_1_Tests/Lab_1_Tests.csproj --logger "console;verbosity=normal"
