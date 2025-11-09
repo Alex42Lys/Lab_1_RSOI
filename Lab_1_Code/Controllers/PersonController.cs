@@ -61,7 +61,8 @@ namespace Lab_1_Code.Controllers
             {
                 return Results.Problem();
             }
-            return Results.Ok(res);
+
+            return Results.Ok(new PersonResposeDTO(personId, "", 0, "", ""));
         }
 
         [HttpDelete]
