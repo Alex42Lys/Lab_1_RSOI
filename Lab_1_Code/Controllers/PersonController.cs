@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lab_1_Code.Controllers
 {
     [ApiController]
-    [Route("api/v1")]
+    [Route("api/v1/[controller]")]
     public class PersonController : ControllerBase
     {
         private readonly IPersonService _personService;
