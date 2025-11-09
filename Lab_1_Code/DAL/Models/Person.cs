@@ -12,9 +12,9 @@ namespace Lab_1_Code.DAL.Models
         [MaxLength(512)]
         public string Name { get; set; }
         [MaxLength(512)]
-        public string? Surname { get; set; }
+        public string? Address { get; set; }
         [MaxLength(512)]
-        public string? Occupation { get; set; }
+        public string? Work { get; set; }
         public int? Age { get; set; }
 
 

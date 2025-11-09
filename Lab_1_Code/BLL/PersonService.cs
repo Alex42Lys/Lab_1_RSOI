@@ -10,7 +10,7 @@ namespace Lab_1_Code.BLL
         public async Task<List<PersonResposeDTO>> GetAll()
         {
             return (await _personRepository.GetAllPersons())
-                .Select(x => new PersonResposeDTO(x.Id, x.Name, x.Age ?? 0, x.Surname ?? "", x.Occupation ?? ""))
+                .Select(x => new PersonResposeDTO(x.Id, x.Name, x.Age ?? 0, x.Address ?? "", x.Work ?? ""))
                 .ToList();
         }
 
@@ -19,7 +19,7 @@ namespace Lab_1_Code.BLL
             var entity = await _personRepository.GetPersonById(id);
             return entity == null ?
                 null :
-                new PersonResposeDTO(entity.Id, entity.Name, entity.Age ?? 0, entity.Surname ?? "", entity.Occupation ?? "");
+                new PersonResposeDTO(entity.Id, entity.Name, entity.Age ?? 0, entity.Address ?? "", entity.Work ?? "");
         }
 
         public async Task<int> Add(PersonRequestDTO personRequest)
@@ -28,8 +28,8 @@ namespace Lab_1_Code.BLL
             {
                 Name = personRequest.Name,
                 Age = personRequest.Age,
-                Surname = personRequest.Surname,
-                Occupation = personRequest.Occupation
+                Address = personRequest.Address,
+                Work = personRequest.Work
             });
         }
 
@@ -39,8 +39,8 @@ namespace Lab_1_Code.BLL
             if (entity == null) return null;
             entity.Name = personRequest.Name ?? entity.Name;
             entity.Age = personRequest.Age ?? entity.Age;
-            entity.Surname = personRequest.Surname ?? entity.Surname;
-            entity.Occupation = personRequest.Occupation ?? entity.Occupation;
+            entity.Address = personRequest.Address ?? entity.Address;
+            entity.Work = personRequest.Work ?? entity.Work;
 
             await _personRepository.UpdatePerson(entity);
             return entity.Id;

@@ -56,11 +56,11 @@ namespace Lab_1_Tests
             var entity = await _personRepository.GetPersonById(entityId);
 
             entity.Name = "John Doe Updated";
-            entity.Occupation = "BMSTU";
+            entity.Work = "BMSTU";
             await _personRepository.UpdatePerson(entity);
 
             Assert.NotEqual("John Doe for Update", entity.Name);
-            Assert.Equal("BMSTU", entity.Occupation);
+            Assert.Equal("BMSTU", entity.Work);
         }
         [Fact]
         public async Task TestGetDeleted()

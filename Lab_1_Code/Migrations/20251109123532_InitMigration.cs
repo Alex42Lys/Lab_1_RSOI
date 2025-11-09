@@ -16,8 +16,8 @@ namespace Lab_1_Code.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: false),
-                    Surname = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
-                    Occupation = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
+                    Address = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
+                    Work = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
                     Age = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>

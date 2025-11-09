@@ -37,11 +37,11 @@ namespace Lab_1_Code.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)");
 
-                    b.Property<string>("Occupation")
+                    b.Property<string>("Work")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)");
 
-                    b.Property<string>("Surname")
+                    b.Property<string>("Address")
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)");
 
