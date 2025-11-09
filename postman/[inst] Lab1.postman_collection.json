@@ -47,13 +47,11 @@
 							"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"address\": \"{{$randomStreetAddress}}\",\n    \"work\": \"{{$randomCompanyName}}\",\n    \"age\": 31\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/persons",
+							"raw": "{{baseUrl}}/persons",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"api",
-								"v1",
 								"persons"
 							]
 						}
