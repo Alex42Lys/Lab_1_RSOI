@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Lab_1_Code.Migrations
 {
     [DbContext(typeof(PersonDbContext))]
-    [Migration("20251108141553_newTable")]
-    partial class newTable
+    [Migration("20251109123532_InitMigration")]
+    partial class InitMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,10 +27,7 @@ namespace Lab_1_Code.Migrations
             modelBuilder.Entity("Lab_1_Code.DAL.Models.Person", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("Age")
                         .HasColumnType("integer");

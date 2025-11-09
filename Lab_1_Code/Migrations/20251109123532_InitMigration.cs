@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -12,18 +11,18 @@ namespace Lab_1_Code.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Persons",
+                name: "PersonBase",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: false),
-                    Surname = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: false),
-                    Occupation = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: false),
-                    Age = table.Column<int>(type: "integer", nullable: false)
+                    Surname = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
+                    Occupation = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
+                    Age = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Persons", x => x.Id);
+                    table.PrimaryKey("PK_PersonBase", x => x.Id);
                 });
         }
 
@@ -31,7 +30,7 @@ namespace Lab_1_Code.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Persons");
+                name: "PersonBase");
         }
     }
 }
