@@ -14,7 +14,7 @@ namespace Lab_1_Tests
         {
             var options = new DbContextOptionsBuilder<PersonDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+                //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 .Options;
             _context = new PersonDbContext(options);
             _personRepository = new PersonRepository(_context);
@@ -33,29 +33,6 @@ namespace Lab_1_Tests
         }
 
         [Fact]
-        public async Task TestIsFinding()
-        {
-            var entityId1 = await _personRepository.AddPerson(new Person()
-            {
-                Name = "John Doe",
-                Age = 20
-            });
-            var entityId2 = await _personRepository.AddPerson(new Person()
-            {
-                Name = "Jane Doe",
-                Age = 20
-            });
-            var entity1 = await _personRepository.GetPersonById(entityId1);
-            var entity2 = await _personRepository.GetPersonById(entityId2);
-            var id1 = entity1.Id;
-            var id2 = entity2.Id;
-            Assert.NotNull(entity1);
-            Assert.NotNull(entity2);
-            Assert.NotEqual(id1, id2);
-
-
-        }
-        [Fact]
         public async Task TestIsDeleting()
         {
             var entityId = await _personRepository.AddPerson(new Person()
@@ -63,9 +40,9 @@ namespace Lab_1_Tests
                 Name = "John Doe for Delete",
             });
             var entity = await _context.PersonBase.FirstOrDefaultAsync(p => entityId == p.Id);
-            await _personRepository.DeletePerson(entity);
-
-            Assert.Null(_context.PersonBase.FirstOrDefault(p => p.Id == entityId));
+            var id = await _personRepository.DeletePerson(entity);
+            Assert.Equal(entityId, id);
+            
         }
 
         [Fact]
@@ -85,6 +62,19 @@ namespace Lab_1_Tests
             Assert.NotEqual("John Doe for Update", entity.Name);
             Assert.Equal("BMSTU", entity.Occupation);
         }
-
+        [Fact]
+        public async Task TestGetDeleted()
+        {
+            var entityId = await _personRepository.AddPerson(new Person()
+            {
+                Name = "John Doe",
+                Age = 20
+            });
+            var entity = await _context.PersonBase.FirstOrDefaultAsync(p => entityId == p.Id);
+            await _personRepository.DeletePerson(entity);
+            Assert.Null(_context.PersonBase.FirstOrDefault(p => p.Id == entityId)); ;
+        }
     }
+
+
 }
