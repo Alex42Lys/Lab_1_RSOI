@@ -42,8 +42,9 @@ namespace Lab_1_Code.BLL
             entity.Address = personRequest.Address ?? entity.Address;
             entity.Work = personRequest.Work ?? entity.Work;
 
-            await _personRepository.UpdatePerson(entity);
-            return entity;
+            var eid = await _personRepository.UpdatePerson(entity);
+            var user = await _personRepository.GetPersonById(id);
+            return user;
         }
 
         public async Task<int?> Delete(int id)
